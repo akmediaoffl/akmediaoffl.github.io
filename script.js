@@ -1,1 +1,7 @@
 const menu=document.querySelector('.menu'),nav=document.querySelector('.nav nav');menu?.addEventListener('click',()=>{nav.style.display=nav.style.display==='flex'?'none':'flex';nav.style.position='absolute';nav.style.top='76px';nav.style.left='0';nav.style.right='0';nav.style.padding='25px 7vw';nav.style.flexDirection='column';nav.style.background='#090909'});
+
+document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const filter=btn.dataset.filter;document.querySelectorAll('.gallery figure').forEach(card=>{card.style.display=filter==='all'||card.dataset.cat===filter?'block':'none'})}));
+
+const form=document.getElementById('bookingForm');form?.addEventListener('submit',e=>{e.preventDefault();const data=new FormData(form);const name=data.get('name'),phone=data.get('phone'),service=data.get('service'),date=data.get('date')||'Not specified',message=data.get('message')||'Not specified';const text=`Hi AK MEDIA, I would like to make an enquiry.%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AService: ${encodeURIComponent(service)}%0AEvent date: ${encodeURIComponent(date)}%0ADetails: ${encodeURIComponent(message)}`;window.open(`https://wa.me/918778466181?text=${text}`,'_blank')});
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{if(window.innerWidth<=900&&nav)nav.style.display='none'}));
