@@ -30,3 +30,7 @@ if(!document.getElementById('offers')){
 if(!document.getElementById('offers-style')){const st=document.createElement('style');st.id='offers-style';st.textContent=`.offers-section{background:#fff}.offers-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.offer-card{background:#fff;border:1px solid #ddd;overflow:hidden;box-shadow:0 12px 35px #00000010;transition:.3s}.offer-card:hover{transform:translateY(-5px);box-shadow:0 18px 42px #00000018}.offer-card>img{display:block;width:100%;height:330px;object-fit:contain;background:#f4f4f4}.offer-card-body{padding:22px}.offer-label{font-size:9px;letter-spacing:.18em;color:#b78322;font-weight:700}.offer-card h3{font:600 27px 'Playfair Display',Georgia,serif;margin:10px 0}.offer-card-body>p:not(.offer-label){font-size:12px;line-height:1.7;color:#777}.offer-card a{display:inline-block;margin-top:12px;color:#111;font-size:10px;text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid #c9a66b;padding-bottom:6px}@media(max-width:900px){.offers-grid{grid-template-columns:1fr}.offer-card>img{height:420px}}`;document.head.appendChild(st)}
 
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{if(window.innerWidth<=900&&nav)nav.style.display='none'}));
+
+// Swap the Video Editing and Varalakshmi Pooja offer positions.
+const offersGrid=document.querySelector('#offers .offers-grid');
+if(offersGrid){const cards=[...offersGrid.querySelectorAll('.offer-card')];if(cards.length>=3){offersGrid.append(cards[0],cards[2],cards[1]);}}
