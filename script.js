@@ -31,3 +31,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 
 const internetImages=document.querySelectorAll('#internet .internet-gallery img');
 if(internetImages.length){internetImages[0].src='assets/INTERNET.jpg';internetImages[0].alt='TIC FIBER Internet service - high quality poster';internetImages[0].removeAttribute('loading');}
+
+// The old Photography Offer card is still present in the static index.html.
+// Hide/remove it on page load so only the current offers remain visible.
+const offerCards=document.querySelectorAll('#offers .offer-card');
+offerCards.forEach(card=>{const text=(card.innerText||'').toLowerCase();const img=card.querySelector('img');const src=(img?.getAttribute('src')||'').toLowerCase();if(text.includes('photography offer')||text.includes('photography booking')||src.includes('a5%20front')||src.includes('a5 front')||src.includes('pack.png'))card.remove();});
