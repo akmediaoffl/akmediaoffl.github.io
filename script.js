@@ -32,3 +32,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 // Keep the offer order unchanged, but swap only the Video Editing and Varalakshmi Pooja images.
 const offersGrid=document.querySelector('#offers .offers-grid');
 if(offersGrid){const cards=[...offersGrid.querySelectorAll('.offer-card')];if(cards.length>=3){const videoImg=cards[1].querySelector('img');const poojaImg=cards[2].querySelector('img');if(videoImg&&poojaImg){const videoSrc=videoImg.src,videoAlt=videoImg.alt;videoImg.src=poojaImg.src;videoImg.alt=poojaImg.alt;poojaImg.src=videoSrc;poojaImg.alt=videoAlt;}}}
+
+// Use the uploaded high-quality Internet poster instead of the old SVG graphic.
+const internetImages=document.querySelectorAll('#internet .internet-gallery img');
+if(internetImages.length){internetImages[0].src='assets/INTERNET.jpg';internetImages[0].alt='TIC FIBER Internet service - high quality poster';internetImages[0].removeAttribute('loading');}
