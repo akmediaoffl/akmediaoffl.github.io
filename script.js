@@ -1,7 +1,20 @@
-const menu=document.querySelector('.menu'),nav=document.querySelector('.nav nav');menu?.addEventListener('click',()=>{nav.style.display=nav.style.display==='flex'?'none':'flex';nav.style.position='absolute';nav.style.top='76px';nav.style.left='0';nav.style.right='0';nav.style.padding='25px 7vw';nav.style.flexDirection='column';nav.style.background='#090909'});
+const menu=document.querySelector('.menu'),nav=document.querySelector('.nav nav');
+// Repair the Portfolio navigation link and add the Google Business destination.
+const portfolioNav=[...document.querySelectorAll('.nav nav a')].find(a=>a.textContent.trim()==='Portfolio');
+if(portfolioNav){portfolioNav.href='portfolio.html';portfolioNav.removeAttribute('data-filter')}
+menu?.addEventListener('click',()=>{nav.style.display=nav.style.display==='flex'?'none':'flex';nav.style.position='absolute';nav.style.top='76px';nav.style.left='0';nav.style.right='0';nav.style.padding='25px 7vw';nav.style.flexDirection='column';nav.style.background='#090909'});
 
 document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const filter=btn.dataset.filter;document.querySelectorAll('.gallery figure').forEach(card=>{card.style.display=filter==='all'||card.dataset.cat===filter?'block':'none'})}));
 
 const form=document.getElementById('bookingForm');form?.addEventListener('submit',e=>{e.preventDefault();const data=new FormData(form);const name=data.get('name'),phone=data.get('phone'),service=data.get('service'),date=data.get('date')||'Not specified',message=data.get('message')||'Not specified';const text=`Hi AK MEDIA, I would like to make an enquiry.%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AService: ${encodeURIComponent(service)}%0AEvent date: ${encodeURIComponent(date)}%0ADetails: ${encodeURIComponent(message)}`;window.open(`https://wa.me/918778466181?text=${text}`,'_blank')});
+
+// Google Business / local trust section.
+const contact=document.getElementById('contact');
+if(contact && !document.getElementById('google-business')){
+ const s=document.createElement('section');s.id='google-business';s.className='section';
+ s.style.cssText='background:#f3f0e8;color:#171717;padding-top:85px;padding-bottom:85px';
+ s.innerHTML=`<div style="max-width:1100px;margin:auto"><p class="eyebrow">GOOGLE BUSINESS</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center"><div><h2 style="font-family:Playfair Display,Georgia,serif;font-size:clamp(42px,5vw,68px);line-height:.95;margin:15px 0">Find <em style="color:#b78322">AK MEDIA</em> on Google.</h2><p style="color:#666;line-height:1.7">Check our Google Business profile, directions, latest photos and customer reviews before booking.</p><div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:25px"><a href="https://www.google.com/maps/search/?api=1&query=AK%20MEDIA%20Hosur%20Tamil%20Nadu" target="_blank" style="background:#111;color:#fff;padding:14px 18px;font-size:10px;text-transform:uppercase;letter-spacing:.1em">View Google Profile ↗</a><a href="https://www.google.com/maps/search/?api=1&query=AK%20MEDIA%20Hosur%20Tamil%20Nadu" target="_blank" style="border:1px solid #aaa;padding:14px 18px;font-size:10px;text-transform:uppercase;letter-spacing:.1em">Get Directions ↗</a></div></div><div style="background:#fff;padding:30px;border:1px solid #ded6c7;box-shadow:0 12px 35px #0000000d"><div style="font-size:34px;letter-spacing:.08em">★★★★★</div><h3 style="font:600 28px Playfair Display,Georgia,serif;margin:12px 0">4.8 / 5 on Google</h3><p style="color:#666">Customer reviews and business information are available on our Google profile.</p><a href="https://www.google.com/maps/search/?api=1&query=AK%20MEDIA%20Hosur%20Tamil%20Nadu" target="_blank" style="color:#b78322;font-size:11px;text-transform:uppercase;letter-spacing:.1em">Read Reviews →</a></div></div></div>`;
+ contact.parentNode.insertBefore(s,contact);
+}
 
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{if(window.innerWidth<=900&&nav)nav.style.display='none'}));
